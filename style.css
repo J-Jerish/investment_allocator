@@ -1,3 +1,9 @@
+/* Global box-sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Body */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -8,9 +14,10 @@ body {
     background: #364F6B;
 }
 
+/* Container */
 .container {
     display: flex;
-    width: 90%;
+    width: 95%;
     max-width: 1200px;
     height: 80vh;
     background-color: #fff;
@@ -34,21 +41,25 @@ body {
     margin-bottom: 40px;
     font-size: 28px;
     color: #222222;
+    text-align: center;
 }
 
+/* Form */
 .calc-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%;
-    max-width: 300px;
+    width: 80%;          /* desktop/tablet width */
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.calc-form input {
-    padding: 12px;
+.calc-form input, .calc-form button {
+    width: 100%;
+    padding: 14px;       /* desktop/tablet padding */
+    font-size: 16px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    font-size: 16px;
 }
 
 .calc-form input:focus {
@@ -57,8 +68,6 @@ body {
 }
 
 .calc-form button {
-    padding: 12px;
-    border-radius: 8px;
     border: none;
     background-color: #FC5185;
     color: white;
@@ -84,30 +93,52 @@ body {
 
 .right-section h2 {
     font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.right-section p {
-    font-size: 18px;
     margin-bottom: 20px;
 }
 
 canvas {
-    max-width: 100%;
+    width: 100% !important;
+    height: auto !important;
 }
 
-@media (max-width: 900px) {
+/* Mobile/tablet adjustments */
+@media (max-width: 768px) {
     .container {
         flex-direction: column;
         height: auto;
+        width: 100%;
+        padding: 0;
     }
 
     .left-section, .right-section {
         width: 100%;
-        padding: 30px 20px;
+        padding: 20px;
     }
 
-    .right-section canvas {
-        max-width: 100%;
+    .left-section h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .right-section h2 {
+        font-size: 20px;
+    }
+
+    canvas {
+        max-width: 95%;
+        height: auto !important;
+    }
+}
+
+/* Mobile phones: below 600px */
+@media (max-width: 600px) {
+    .calc-form {
+        width: 90%;       /* take most of the screen width */
+        max-width: none;
+    }
+
+    .calc-form input, .calc-form button {
+        font-size: 14px;
+        padding: 10px;   /* smaller padding for mobile */
     }
 }
