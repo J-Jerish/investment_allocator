@@ -32,3 +32,6 @@ A simple web application to visualize investment allocation based on your age an
 - [chartjs-plugin-datalabels](https://chartjs-plugin-datalabels.netlify.app/)
 
 ---
+## Live Demo
+
+The project is hosted using GitHub Pages: https://J-Jerish.github.io/investment_allocator/
