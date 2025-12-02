@@ -96,8 +96,7 @@ canvas {
     max-width: 100%;
 }
 
-/* Mobile view: stack sections vertically */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .container {
         flex-direction: column;
         height: auto;
