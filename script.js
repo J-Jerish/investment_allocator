@@ -11,20 +11,37 @@ const defaultData = {
 
 const defaultOptions = {
     plugins: {
-        legend: { display: false }, // remove legend/color indicators
-        tooltip: { enabled: false }, // remove hover tooltips
+        legend: {
+            display: false
+        }, // remove legend
+        tooltip: {
+            enabled: false
+        }, // remove hover tooltip
         datalabels: {
             color: '#fff',
-            font: { weight: 'bold', size: 14 },
+            font: {
+                weight: 'bold',
+                size: 14
+            },
             formatter: function(value, context) {
                 const label = context.chart.data.labels[context.dataIndex];
-                const total = context.dataset.data.reduce((a,b)=>a+b,0);
-                const pct = ((value/total)*100).toFixed(1);
-                return `${label}\n₹${value}\n(${pct}%)`;
+                // Removed percentage
+                return `${label}\n₹${value}`;
             },
-            anchor: 'center',
-            align: 'center'
+            anchor: function(context) {
+                const value = context.dataset.data[context.dataIndex];
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                return value / total < 0.1 ? 'end' : 'center';
+            },
+            align: function(context) {
+                const value = context.dataset.data[context.dataIndex];
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                return value / total < 0.1 ? 'end' : 'center';
+            },
+            offset: 4,
+            clamp: true
         }
+
     }
 };
 
@@ -66,6 +83,6 @@ document.getElementById('investmentForm').addEventListener('submit', function(e)
     pieChart.data.datasets[0].data = investedAmounts;
     pieChart.update();
 
-    // Update portfolio type title above chart
+    // Update title above chart
     document.getElementById('portfolioTitle').innerText = `${portfolioType} for ₹${amount}`;
 });
