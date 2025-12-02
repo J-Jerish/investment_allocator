@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investment Allocator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left section -->
+        <div class="left-section">
+            <h1>Investment Allocator</h1>
+            <form class="calc-form" id="investmentForm">
+                <input type="number" id="amount" placeholder="Enter Amount" required>
+                <input type="number" id="age" placeholder="Enter Age" required>
+                <button type="submit">Calculate</button>
+            </form>
+        </div>
+
+        <!-- Right section -->
+        <div class="right-section">
+            <h2 id="portfolioTitle">Shape Your Portfolio in Seconds</h2>
+            <canvas id="pieChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js Data Labels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
