@@ -3,11 +3,16 @@
     box-sizing: border-box;
 }
 
-/* Body */
+/* Lock viewport & remove scroll */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* prevents scrolling on all devices */
+}
+
+/* Body styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,20 +25,21 @@ body {
     width: 95%;
     max-width: 1200px;
 
-    /* Updated for Windows — prevents chopping */
-    min-height: 80dvh;
-    height: auto;
+    /* Fixed viewport-fit height (no scroll) */
+    height: 80dvh;
+    max-height: 80dvh;
 
     background-color: #fff;
     border-radius: 15px;
-    overflow: hidden;
+    overflow: hidden; /* ensures nothing leaks outside */
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-/* Left + Right flex fix */
+/* Flex sections should not shrink */
 .left-section,
 .right-section {
-    flex-shrink: 0; /* prevents Windows from squeezing content */
+    flex-shrink: 0;
+    overflow: hidden; /* block internal scroll */
 }
 
 /* Left section */
@@ -64,7 +70,8 @@ body {
     margin: 0 auto;
 }
 
-.calc-form input, .calc-form button {
+.calc-form input,
+.calc-form button {
     width: 100%;
     padding: 14px;
     font-size: 16px;
@@ -106,7 +113,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Canvas fix for Windows */
+/* Chart Canvas */
 canvas {
     width: 100% !important;
     height: auto !important;
@@ -114,16 +121,22 @@ canvas {
     object-fit: contain;
 }
 
-/* Tablet and mobile adjustments */
+/* Tablet adjustments */
 @media (max-width: 768px) {
+    html, body {
+        overflow: auto; /* allow scroll on small devices */
+    }
+
     .container {
         flex-direction: column;
         height: auto;
+        max-height: none;
         width: 100%;
         padding: 0;
     }
 
-    .left-section, .right-section {
+    .left-section,
+    .right-section {
         width: 100%;
         padding: 20px;
     }
@@ -150,7 +163,8 @@ canvas {
         max-width: none;
     }
 
-    .calc-form input, .calc-form button {
+    .calc-form input,
+    .calc-form button {
         font-size: 16px;
         padding: 10px;
     }
