@@ -19,11 +19,21 @@ body {
     display: flex;
     width: 95%;
     max-width: 1200px;
-    height: 80vh;
+
+    /* Updated for Windows — prevents chopping */
+    min-height: 80dvh;
+    height: auto;
+
     background-color: #fff;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Left + Right flex fix */
+.left-section,
+.right-section {
+    flex-shrink: 0; /* prevents Windows from squeezing content */
 }
 
 /* Left section */
@@ -49,15 +59,15 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 80%;          /* desktop/tablet width */
+    width: 80%;
     max-width: 400px;
     margin: 0 auto;
 }
 
 .calc-form input, .calc-form button {
     width: 100%;
-    padding: 14px;       /* desktop/tablet padding */
-    font-size: 16px;     /* >=16px prevents iPhone auto-zoom */
+    padding: 14px;
+    font-size: 16px;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
@@ -96,9 +106,12 @@ body {
     margin-bottom: 20px;
 }
 
+/* Canvas fix for Windows */
 canvas {
     width: 100% !important;
     height: auto !important;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 /* Tablet and mobile adjustments */
@@ -133,12 +146,12 @@ canvas {
 /* Mobile phones: below 600px */
 @media (max-width: 600px) {
     .calc-form {
-        width: 90%;       /* take most of the screen width */
+        width: 90%;
         max-width: none;
     }
 
     .calc-form input, .calc-form button {
-        font-size: 16px;   /* keep 16px to avoid iPhone zoom */
+        font-size: 16px;
         padding: 10px;
     }
 }
