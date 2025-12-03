@@ -28,16 +28,6 @@ const defaultOptions = {
                 // Removed percentage
                 return `${label}\n₹${value}`;
             },
-            anchor: function(context) {
-                const value = context.dataset.data[context.dataIndex];
-                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                return value / total < 0.1 ? 'end' : 'center';
-            },
-            align: function(context) {
-                const value = context.dataset.data[context.dataIndex];
-                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                return value / total < 0.1 ? 'end' : 'center';
-            },
             offset: 4,
             clamp: true
         }
